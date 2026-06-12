@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  prtg-middleware:
+    build: .
+    container_name: prtg-middleware
+    ports:
+      - "8083:8083"
+    environment:
+      OTEL_ENDPOINT: "http://host.docker.internal:4318/v1/logs"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
